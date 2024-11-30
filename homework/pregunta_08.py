@@ -16,14 +16,30 @@ def pregunta_08():
 
     Rta/
     [(0, ['C']),
-     (1, ['B', 'E']),
-     (2, ['A', 'E']),
-     (3, ['A', 'B', 'D', 'E']),
-     (4, ['B', 'E']),
-     (5, ['B', 'C', 'D', 'E']),
-     (6, ['A', 'B', 'C', 'E']),
-     (7, ['A', 'C', 'D', 'E']),
-     (8, ['A', 'B', 'D', 'E']),
-     (9, ['A', 'B', 'C', 'E'])]
+    (1, ['B', 'E']),
+    (2, ['A', 'E']),
+    (3, ['A', 'B', 'D', 'E']),
+    (4, ['B', 'E']),
+    (5, ['B', 'C', 'D', 'E']),
+    (6, ['A', 'B', 'C', 'E']),
+    (7, ['A', 'C', 'D', 'E']),
+    (8, ['A', 'B', 'D', 'E']),
+    (9, ['A', 'B', 'C', 'E'])]
 
     """
+    asociaciones = {}
+    with open('files/input/data.csv', 'r') as file:
+        for linea in file:
+            columnas = linea.strip().split('\t')
+            valor_columna_2 = int(columnas[1])
+            letra_columna_1 = columnas[0]
+            if valor_columna_2 in asociaciones:
+                if letra_columna_1 not in asociaciones[valor_columna_2]:
+                    asociaciones[valor_columna_2].append(letra_columna_1)
+            else:
+                asociaciones[valor_columna_2] = [letra_columna_1]
+
+    resultado = [(clave, sorted(letras)) for clave, letras in sorted(asociaciones.items())]
+    return resultado
+
+print(pregunta_08())

@@ -15,3 +15,18 @@ def pregunta_02():
     [('A', 8), ('B', 7), ('C', 5), ('D', 6), ('E', 14)]
 
     """
+    letras = {}
+    with open('files/input/data.csv', 'r') as file:
+        for linea in file:
+            primera = linea[0]
+
+            if primera in letras:
+                letras[primera] += 1
+            else:
+                letras[primera] = 1
+
+        organizado = sorted(letras.items())
+
+    return (organizado)
+
+print(pregunta_02())    

@@ -15,3 +15,18 @@ def pregunta_03():
     [('A', 53), ('B', 36), ('C', 27), ('D', 31), ('E', 67)]
 
     """
+
+    letras = {}
+    with open('files/input/data.csv', 'r') as file:
+        for linea in file:
+            primera = linea[0]
+            columnas = linea.split('\t')
+            if primera in letras:
+                letras[primera] += int(columnas[1])
+            else:
+                letras[primera] = int(columnas[1])
+
+        organizado = sorted(letras.items())
+    return (organizado)
+
+print(pregunta_03())    
